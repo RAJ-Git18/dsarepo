@@ -1,118 +1,109 @@
-// #include <stdio.h>
-// #define max_stack_size 5
+#include <stdio.h>
 
-// // Global Variables
-// int top = -1;
-// int stack[max_stack_size];
-// int item;
+#define max_size 5
 
-// // Functions to be called
-// void Stack()
-// {
-//     if (top == max_stack_size - 1)
-//     {
-//         printf("\nStack is full\n");
-//     }
-//     else
-//     {
-//         top++;
-//         printf("Enter the element to be stored: ");
-//         scanf("%d", &item);
-//         stack[top] = item; 
-//     }
-// }
+// Global Variables
+int front = -1; // data out
+int rear = -1;  // data in
 
-// void pop()
-// {
-//     if(top == -1)
-//     {
-//         printf("\nThere's no element in the chamber.\n");
-//     }
-//     else
-//     {
-//         printf("%d is poped out\n",stack[top]);
-//         top--;
-//     }
-// }
-// void display()
-// {
-//     printf("\nAll the elements stored in the stack: ");
-//     for(int i =top; i>=0;i--)
-//     {
-//         printf("\t%d",stack[i]);
-//     }
-// }
-// void no_of_elements()
-// {
-//     printf("\n The number of elements stored in the stack: %d",top+1);
-// }
-// void peek()
-// {
-//     printf("The element at the top of the stack is %d",stack[top]);
-// }
+int queue[max_size];
+int item;
 
-// int main()
-// {
-//     int option_status = 1;
-//     int choose;
-//     while (option_status)
-//     {
-//         printf("\n==> MENU <==\n 1.STACK \n 2.POP \n 3.DISPLAY \n 4.NO OF ELEMENTS \n 5.PEEK \n 6.EXIT \n ------------------------- \n");
-//         printf("Choose one option: \n");
-//         scanf("%d", &choose);
-//         switch (choose)
-//         {
-//         case 1:
-//             Stack();
-//             break;
-//         case 2:
-//             pop();
-//             break;
-//         case 3:
-//             display();
-//             break;
-//         case 4:
-//             no_of_elements();
-//             break;
-//         case 5:
-//             peek();
-//             break;
-//         case 6:
-//             option_status = 0;
-//             printf("Exited!!!!");
-//             break;
-//         default:
-//             printf("Invalid option");
-//         }
-//     }
-//     return 0;
-// }
-
-#include<stdio.h>
-int main ()
-{ 
-    int temp = 0;
-    int array[3] = {1,7,8};
-    for(int i=0;i<3;i++)
+// Functions to be called
+void Enqueue()
+{
+    if (rear == max_size - 1)
     {
-        for(int j=i+1;j<3;j++)
-        {
-            if(array[i]<array[j])
-            {   
-                
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-               
-            }
-        }
-
+        printf("The queue is full\n");
     }
-    printf("The result is : ");
-
-    for(int i=0;i<3;i++)
+    else if (rear == -1 && front == -1)
     {
-        printf("%d",array[i]);
+        rear++;
+        front++;
+        printf("Enter the element to be stored: \n");
+        scanf("%d", &item);
+        queue[rear] = item;
+    }
+    else
+    {
+        rear++;
+        printf("Enter the element to be stored: \n");
+        scanf("%d", &item);
+        queue[rear] = item;
+    }
+}
+
+void Dequeue()
+{
+    if (front == -1)
+    {
+        printf("No element is found\n");
+    }
+    else if (rear == front)
+    {
+        printf("%d is dequeued", queue[front]);
+        rear = -1;
+        front = -1;
+    }
+    else
+    {
+        printf("%d is dequeued", queue[front]);
+        front++;
+    }
+}
+
+void Displayfront()
+{
+    if (front == -1 && rear == -1)
+    {
+        printf("No element is found\n");
+    }
+    else
+    {
+        printf("%d", queue[front]);
+    }
+}
+
+void Displayall()
+{
+    printf("The stored elements are: ");
+    for(int i = front;i<=rear;i++)
+    {
+        printf("%d",queue[i]);
+    }
+}
+
+int main()
+{
+    int option_status = 1;
+    int choose;
+    while (option_status)
+    {
+        printf("\n==> MENU <==\n 1.ENQUEUE \n 2.DEQUEUE \n 3.DISPLAY FRONT ELEMEMNT\n 4.DISPLAY ALL ELEMENTS  \n 5.EXIT \n ------------------------- \n");
+        printf("Choose one option: ");
+        scanf("%d", &choose);
+
+        switch (choose)
+        {
+        case 1:
+            Enqueue();
+            break;
+        case 2:
+            Dequeue();
+            break;
+        case 3:
+            Displayfront();
+            break;
+        case 4:
+            Displayall();
+            break;
+        case 5:
+            option_status = 0;
+            printf("Exited!!!!");
+            break;
+        default:
+            printf("Invalid option");
+        }
     }
     return 0;
 }
