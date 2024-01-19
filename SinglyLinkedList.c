@@ -3,12 +3,12 @@
 
 typedef struct node
 {
-    int info; 
+    int info;
     struct node *next;
 
 } node;
 
-node *start = NULL; 
+node *start = NULL;
 
 // inserting a node at the beginning
 void f_insert()

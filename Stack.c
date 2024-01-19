@@ -2,8 +2,8 @@
 #define max_stack_size 5
 
 // Global Variables
-int top = -1;
 int stack[max_stack_size];
+int top = -1;
 int item;
 
 // Functions to be called
@@ -11,65 +11,43 @@ void Stack()
 {
     if (top == max_stack_size - 1)
     {
-        printf("The stack is full.");
+        printf("Stack is full\n");
     }
     else
     {
         top++;
-        printf("Enter the no to be stored: ");
+        printf("Enter the element: ");
         scanf("%d", &item);
         stack[top] = item;
     }
 }
-
 void pop()
 {
     if (top == -1)
     {
-        printf("No element found.\n");
+        printf("The stack is empty\n");
     }
     else
     {
-        printf("%d is poped out.\n", stack[top]);
+        printf("The element popped out is %d \n", stack[top]);
         top--;
-    }
-}
-void display()
-{
-    if (top == -1)
-    {
-        printf("No element found.\n");
-    }
-    else
-    {
-
-        printf("The elements are: ");
-        for (int i = top; i >= 0; i--)
-        {
-            printf("%d \t", stack[i]);
-        }
     }
 }
 void no_of_elements()
 {
-    printf("The no of elements present in the stack are: %d\n", top + 1);
+    printf("The no of elements present in the stack is: %d \n", top + 1);
+}
+void display()
+{
+    for (int i = top; i >= 0; i--)
+    {
+        printf("%d\t", stack[i]);
+    }
 }
 void peek()
 {
-    if (top == -1)
-    {
-        printf("No element found.\n");
-    }
-    else
-    {
-        for(int i=top;i>=top;i--)
-        {
-            printf("%d is peeked.\n",stack[top]);
-        }
-            top--;
-    }
+    printf("The peeked element is: %d \n", stack[top]);
 }
-
 int main()
 {
     int option_status = 1;
